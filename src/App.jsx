@@ -5,10 +5,12 @@ import Trivia from "./components/Trivia.jsx";
 import data from "./data/data.js";
 import moneyPyramids from "./data/moneyPyramid.js";
 import Timer from "./components/Timer.jsx";
+import Start from "./components/Start.jsx";
 
 
 function App() {
 
+  const [username,setUsername]=useState(null)
   const [questionNumber,setQuestionNumber]=useState(1)
   const [stop,setStop]=useState(false)
   const [earned,setEarned]=useState("$ 0")
@@ -19,7 +21,9 @@ function App() {
   
   return (
     <div className="app">
-      <div className="main">
+      {username ? (
+        <>
+        <div className="main">
         {stop ? (<h1 className="endText">You earned: {earned}</h1> ):(
           <>
           <div className="top">
@@ -40,6 +44,9 @@ function App() {
         
       </div>
       <Pyramid questionPyramid={questionNumber}/>
+        </>
+      ):<Start setUsername={setUsername}/>}
+      
     </div>
   );
 }
